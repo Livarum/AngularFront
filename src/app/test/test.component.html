@@ -1,0 +1,57 @@
+<!-- test.component.html -->
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Actions</th> <!-- Add Actions column -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.price }}</td>
+        <td>
+          <button (click)="editProduct(product)">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <!-- Modal for editing -->
+  <div class="modal" id="editModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Form for editing product -->
+          <form (submit)="saveChanges()">
+            <!-- Add form fields for editing, e.g., input for name, description, and price -->
+            <label for="editName">Name:</label>
+            <input type="text" id="editName" [(ngModel)]="editedProduct.name" name="name" required>
+  
+            <label for="editDescription">Description:</label>
+            <textarea id="editDescription" [(ngModel)]="editedProduct.description" name="description" required></textarea>
+  
+            <label for="editPrice">Price:</label>
+            <input type="number" id="editPrice" [(ngModel)]="editedProduct.price" name="price" required>
+  
+            <!-- Add other form fields as needed -->
+            
+            <button type="submit">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
